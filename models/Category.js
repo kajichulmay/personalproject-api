@@ -3,8 +3,9 @@ module.exports = (sequelize, DataTypes) => {
     'Category',
     {
       name: {
-        type: DataTypes.ENUM('Manga', 'LightNovel'),
+        type: DataTypes.STRING,
         allowNull: false,
+        uunique: true,
       },
     },
     {

@@ -4,12 +4,23 @@ require('dotenv').config();
 const cors = require('cors');
 const { sequelize } = require('./models');
 const authRoute = require('./route/authRoute');
+const bookRoute = require('./route/bookRoute');
+const categoryRoute = require('./route/categoryRoute');
+const multer = require('multer');
+
+const { upload } = require('./middleware/upload');
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 // sequelize.sync({ force: true });
+
+app.use('/category', categoryRoute);
+app.use('/', bookRoute);
 app.use('/', authRoute);
+
 app.use((err, req, res, next) => {
-  res.status(404).json({ message: err });
+  res.status(400).json({ message: err });
+  console.log(err);
 });
 
 let port = process.env.PORT || 9999;
