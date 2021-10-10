@@ -4,9 +4,6 @@ const { authenticate, checkAdmin } = require('../controller/authController');
 const { upload } = require('../middleware/upload');
 
 router.get('/', BookController.getAllBook);
-router.get('/all-series', BookController.getAllBook);
-router.get('/manga', BookController.getAllBook);
-router.get('/light-novel', BookController.getAllBook);
 
 router.get('/book:id', BookController.getBookById);
 

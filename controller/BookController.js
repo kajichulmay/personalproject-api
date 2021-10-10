@@ -5,7 +5,11 @@ const cloundinary = require('cloudinary').v2;
 const uploadPromise = util.promisify(cloundinary.uploader.upload);
 exports.getAllBook = async (req, res, next) => {
   try {
-  } catch (err) {}
+    const bookAll = await Book.findAll();
+    res.status(200).json({ bookAll });
+  } catch (err) {
+    next(err);
+  }
 };
 exports.getBookById = async (req, res, next) => {
   try {
@@ -14,9 +18,9 @@ exports.getBookById = async (req, res, next) => {
 exports.createBook = async (req, res, next) => {
   try {
     const { name, volumn, categoryId, price, amount, description, status } = req.body;
-    if (!name || !volumn || !categoryId || !price || !amount || !imageUrl) {
-      res.status(400).json({ message: 'กรุณาใส่ ชื่อสินค้า ,เล่มที่ , ประเภท  , ราคา , จำนวนเล่ม , รูปภาพปกหนังสือ' });
-    }
+    // if (!name || !volumn || !categoryId || !price || !amount || !imageUrl) {
+    //   res.status(400).json({ message: 'กรุณาใส่ ชื่อสินค้า ,เล่มที่ , ประเภท  , ราคา , จำนวนเล่ม , รูปภาพปกหนังสือ' });
+    // }
     const result = await Promise.all(req.files.map(item => uploadPromise(item.path, { timeout: 6000000 })));
     const imageUrl = result[0].secure_url;
     const imageCoverUrl = result[1] ? result[1].secure_url : null;

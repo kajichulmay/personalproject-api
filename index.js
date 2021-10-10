@@ -6,14 +6,14 @@ const { sequelize } = require('./models');
 const authRoute = require('./route/authRoute');
 const bookRoute = require('./route/bookRoute');
 const categoryRoute = require('./route/categoryRoute');
-const multer = require('multer');
+const userRoute = require('./route/userRoute');
 
-const { upload } = require('./middleware/upload');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 // sequelize.sync({ force: true });
 
+app.use('/myaccount', userRoute);
 app.use('/category', categoryRoute);
 app.use('/', bookRoute);
 app.use('/', authRoute);
