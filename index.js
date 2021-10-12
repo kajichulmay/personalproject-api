@@ -7,15 +7,18 @@ const authRoute = require('./route/authRoute');
 const bookRoute = require('./route/bookRoute');
 const categoryRoute = require('./route/categoryRoute');
 const userRoute = require('./route/userRoute');
-
+const orderItemRoute = require('./route/orderItemRoute');
+const NoticePaymentRoute = require('./route/NoticPaymentRoute');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 // sequelize.sync({ force: true });
 
+app.use('/notice-of-payment', NoticePaymentRoute);
 app.use('/myaccount', userRoute);
 app.use('/category', categoryRoute);
 app.use('/', bookRoute);
+app.use('/', orderItemRoute);
 app.use('/', authRoute);
 
 app.use((err, req, res, next) => {
