@@ -44,15 +44,23 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: 'RESTRICT',
       onUpdate: 'RESTRICT',
-    }),
-      Book.belongsTo(models.Category, {
-        foreignKey: {
-          name: 'categoryId',
-          allowNull: false,
-        },
-        onDelete: 'RESTRICT',
-        onUpdate: 'RESTRICT',
-      });
+    });
+    Book.belongsTo(models.Category, {
+      foreignKey: {
+        name: 'categoryId',
+        allowNull: false,
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT',
+    });
+    Book.hasMany(models.Cart, {
+      foreignKey: {
+        name: 'bookId',
+        allowNull: false,
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT',
+    });
   };
   return Book;
 };

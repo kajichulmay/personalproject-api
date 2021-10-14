@@ -50,6 +50,14 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'RESTRICT',
       onUpdate: 'RESTRICT',
     });
+    User.hasMany(models.Cart, {
+      foreignKey: {
+        name: 'userId', // ต้องเขียน id ของฝั่ง one
+        allowNull: false,
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT',
+    });
   };
   return User;
 };

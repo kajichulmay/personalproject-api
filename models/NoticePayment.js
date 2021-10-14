@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
-  NoticePayment.asscoiate = models => {
+  NoticePayment.associate = models => {
     NoticePayment.belongsTo(models.Order, {
       foreignKey: {
         name: 'orderId',
@@ -21,15 +21,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: 'RESTRICT',
       onUpdate: 'RESTRICT',
-    }),
-      NoticePayment.belongsTo(models.Bank, {
-        foreignKey: {
-          name: 'bankId',
-          allowNull: false,
-        },
-        onDelete: 'RESTRICT',
-        onUpdate: 'RESTRICT',
-      });
+    });
+    NoticePayment.belongsTo(models.Bank, {
+      foreignKey: {
+        name: 'bankId',
+        allowNull: false,
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT',
+    });
   };
+
   return NoticePayment;
 };

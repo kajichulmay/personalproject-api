@@ -29,15 +29,15 @@ module.exports = (sequelize, Datatypes) => {
       },
       onDelete: 'RESTRICT',
       onUpdate: 'RESTRICT',
-    }),
-      Order.hasMany(models.OrderItem, {
-        foreignKey: {
-          name: 'orderId',
-          allowNull: false,
-        },
-        onDelete: 'RESTRICT',
-        onUpdate: 'RESTRICT',
-      });
+    });
+    Order.hasMany(models.OrderItem, {
+      foreignKey: {
+        name: 'orderId',
+        allowNull: false,
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT',
+    });
     Order.hasOne(models.NoticePayment, {
       foreignKey: {
         name: 'orderId',

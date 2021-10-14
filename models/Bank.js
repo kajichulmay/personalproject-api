@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Bank.asscoiate = models => [
+  Bank.associate = models => {
     Bank.hasOne(models.NoticePayment, {
       foreignKey: {
         name: 'bankId',
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: 'RESTRICT',
       onUpdate: 'RESTRICT',
-    }),
-  ];
+    });
+  };
   return Bank;
 };

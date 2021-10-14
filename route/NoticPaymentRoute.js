@@ -3,9 +3,8 @@ const { authenticate, checkAdmin } = require('../controller/authController');
 const NoticePaymentController = require('../controller/NoticePaymentController');
 const { upload } = require('../middleware/upload');
 
-router.get('/', authenticate, NoticePaymentController.getAllNoticPayment);
-router.get('/:id', authenticate, NoticePaymentController.getNoticPaymentById);
+// router.get('/', authenticate, NoticePaymentController.getAllNoticPayment);
 
-router.post('/', authenticate, upload.array('picture'), NoticePaymentController.createNoticPayment);
+router.post('/', authenticate, upload.single('picture'), NoticePaymentController.createNoticPayment);
 
 module.exports = router;
